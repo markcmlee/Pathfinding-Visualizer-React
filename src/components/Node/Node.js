@@ -19,15 +19,22 @@ const Node = ({ rowIdx, colIdx }) => {
 
   setItemCache.current[REACTKEYS[rowIdx][colIdx]] = setType;
 
+  // if (
+  //   (rowIdx === start.current.x && colIdx === start.current.y) ||
+  //   (rowIdx === finish.current.x && colIdx === finish.current.y)
+  // )
+  //   setType(ITEM_FIXED);
+
   const setColor = () => {
     if (
       (rowIdx === start.current.x && colIdx === start.current.y) ||
       (rowIdx === finish.current.x && colIdx === finish.current.y)
     )
-      return "black";
+      return FIXED_COLOR;
 
     if (type === ITEM_VISITED) return VISITED_COLOR;
     if (type === ITEM_CLICKED) return CLICKED_COLOR;
+    if (type === ITEM_FIXED) return FIXED_COLOR;
 
     return INITIAL_COLOR;
   };
@@ -37,36 +44,28 @@ const Node = ({ rowIdx, colIdx }) => {
   if (rowIdx === start.current.x && colIdx === start.current.y) {
     return (
       <div
-        data-type="string"
+        data-type={ITEM_FIXED}
         data-ridx={rowIdx}
         data-cidx={colIdx}
         style={{
           backgroundColor: setColor(),
-          color: "white",
-          textAlign: "center",
         }}
         className="boardNode"
-      >
-        S
-      </div>
+      />
     );
   }
 
   if (rowIdx === finish.current.x && colIdx === finish.current.y) {
     return (
       <div
-        data-type="string"
+        data-type={ITEM_FIXED}
         data-ridx={rowIdx}
         data-cidx={colIdx}
         style={{
           backgroundColor: setColor(),
-          color: "white",
-          textAlign: "center",
         }}
         className="boardNode"
-      >
-        F
-      </div>
+      />
     );
   }
 

@@ -26,13 +26,14 @@ const Board = () => {
 
   const onMouseDown = (e) => {
     const { ridx, cidx } = e.target.dataset;
-    setIsClicking(true);
-    if (e.target.dataset.type === ITEM_CLICKED) setClickingWall(true);
-    else if (ridx == start.current.x && cidx == start.current.y)
+    if (e.target.dataset.type == ITEM_CLICKED) {
+      setClickingWall(true);
+      setIsClicking(true);
+    } else if (ridx == start.current.x && cidx == start.current.y)
       setChangingEndpoints({ start: true, finish: false });
     else if (ridx == finish.current.x && cidx == finish.current.y) {
       setChangingEndpoints({ start: false, finish: true });
-    }
+    } else setIsClicking(true);
   };
 
   const onMouseUp = (e) => {
@@ -47,16 +48,26 @@ const Board = () => {
     const { type } = e.target.dataset;
     if (type !== ITEM_INITIAL && type !== ITEM_CLICKED) return;
     const { ridx, cidx } = e.target.dataset;
-    const itemType = clickingWall ? ITEM_INITIAL : ITEM_CLICKED;
+    const itemType =
+      (type === ITEM_CLICKED && !mouseMove) || clickingWall
+        ? ITEM_INITIAL
+        : ITEM_CLICKED;
+    updateNode(ridx, cidx, itemType);
+  };
 
-    if (changingEndpoints.start || changingEndpoints.finish) {
+  const onMouseMove = (e) => {
+    if (e.target.className !== "boardNode") return;
+    const { ridx, cidx } = e.target.dataset;
+    if (isClicking) {
+      createWall(e, true);
+    } else if (changingEndpoints.start || changingEndpoints.finish) {
       const formerX = changingEndpoints.start
         ? start.current.x
         : finish.current.x;
       const formerY = changingEndpoints.start
         ? start.current.y
         : finish.current.y;
-
+      // if (e.target.dataset.type === ITEM_INITIAL)
       updateNode(formerX, formerY, ITEM_INITIAL);
       const next = { x: ridx, y: cidx };
       if (changingEndpoints.start) {
@@ -66,19 +77,11 @@ const Board = () => {
       }
 
       updateNode(next.x, next.y);
-    } else {
-      updateNode(ridx, cidx, itemType);
     }
   };
 
-  const onMouseMove = (e) => {
-    if (e.target.className !== "boardNode") return;
-    const ridx = e.target.dataset.ridx;
-    const cidx = e.target.dataset.cidx;
-    if (isClicking) {
-      // console.log("MOVING MOUSE", ridx, cidx);
-      createWall(e, true);
-    }
+  const onMouseClick = (e) => {
+    createWall(e, false);
   };
 
   return (
@@ -87,6 +90,7 @@ const Board = () => {
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
       onMouseMove={onMouseMove}
+      onClick={onMouseClick}
     >
       {BOARD.map((row, rowIdx) => (
         <div className="boardRow" key={rowIdx}>

@@ -1,5 +1,11 @@
 import React, { createContext, useRef, useState } from "react";
-import { BOARD, BOARD_ROW, BOARD_COL } from "./actionTypes";
+import {
+  BOARD,
+  BOARD_ROW,
+  BOARD_COL,
+  ITEM_FIXED,
+  REACTKEYS,
+} from "./actionTypes";
 
 export const Context = createContext();
 
@@ -12,6 +18,14 @@ export const Provider = ({ children }) => {
   const finish = useRef({ x: Math.floor(BOARD_ROW / 2), y: BOARD_COL - 3 });
 
   const board = useRef(JSON.parse(JSON.stringify(BOARD)));
+  const setItemCache = useRef({});
+
+  const updateNode = (ridx, cidx, itemType = ITEM_FIXED) => {
+    board.current[ridx][cidx] = itemType;
+    const setItem = setItemCache.current[REACTKEYS[ridx][cidx]];
+    // console.log("this is setitem", setItem);
+    setItem(itemType);
+  };
 
   return (
     <Context.Provider
@@ -22,6 +36,8 @@ export const Provider = ({ children }) => {
         start,
         finish,
         board,
+        updateNode,
+        setItemCache,
       }}
     >
       {children}

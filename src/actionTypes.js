@@ -5,9 +5,9 @@ export const BOARD_ROW = 16;
 export const BOARD_COL = 32;
 
 // Colors
-export const INITIAL_COLOR = "gray";
+export const INITIAL_COLOR = "white";
 export const VISITED_COLOR = "blue";
-export const CLICKED_COLOR = "black";
+export const CLICKED_COLOR = "gray";
 export const FIXED_COLOR = "orange";
 export const PATH_COLOR = "red";
 
@@ -39,7 +39,7 @@ for (let i = 0; i < BOARD_ROW; i++) {
   }
 }
 
-// Item state
+// Node state
 export const ITEM_FIXED = "ITEM_FIXED";
 export const ITEM_INITIAL = "ITEM_INITIAL";
 export const ITEM_VISITED = "ITEM_VISITED";

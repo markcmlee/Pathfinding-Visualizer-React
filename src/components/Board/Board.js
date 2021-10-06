@@ -19,10 +19,6 @@ const Board = () => {
     start: false,
     finish: false,
   });
-  // console.log("start", start);
-  // console.log("finish", finish);
-  // console.log("BOARD", BOARD);
-  // console.log("REACTKEYS", REACTKEYS);
 
   const onMouseDown = (e) => {
     const { ridx, cidx } = e.target.dataset;
@@ -67,7 +63,6 @@ const Board = () => {
       const formerY = changingEndpoints.start
         ? start.current.y
         : finish.current.y;
-      // if (e.target.dataset.type === ITEM_INITIAL)
       updateNode(formerX, formerY, ITEM_INITIAL);
       const next = { x: ridx, y: cidx };
       if (changingEndpoints.start) {
@@ -86,6 +81,7 @@ const Board = () => {
 
   return (
     <div
+      role="grid"
       className="board"
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
@@ -93,7 +89,7 @@ const Board = () => {
       onClick={onMouseClick}
     >
       {BOARD.map((row, rowIdx) => (
-        <div className="boardRow" key={rowIdx}>
+        <div className="boardRow" role="row" key={rowIdx}>
           {row.map((col, colIdx) => (
             <Node
               rowIdx={rowIdx}

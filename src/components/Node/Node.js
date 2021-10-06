@@ -19,12 +19,6 @@ const Node = ({ rowIdx, colIdx }) => {
 
   setItemCache.current[REACTKEYS[rowIdx][colIdx]] = setType;
 
-  // if (
-  //   (rowIdx === start.current.x && colIdx === start.current.y) ||
-  //   (rowIdx === finish.current.x && colIdx === finish.current.y)
-  // )
-  //   setType(ITEM_FIXED);
-
   const setColor = () => {
     if (
       (rowIdx === start.current.x && colIdx === start.current.y) ||
@@ -38,8 +32,6 @@ const Node = ({ rowIdx, colIdx }) => {
 
     return INITIAL_COLOR;
   };
-
-  // console.log(rowIdx, colIdx);
 
   if (rowIdx === start.current.x && colIdx === start.current.y) {
     return (
@@ -71,6 +63,7 @@ const Node = ({ rowIdx, colIdx }) => {
 
   return (
     <div
+      role="gridcell"
       data-type={type}
       data-ridx={rowIdx}
       data-cidx={colIdx}

@@ -30,7 +30,7 @@ const Board = () => {
     if (e.target.dataset.type === ITEM_CLICKED) setClickingWall(true);
     else if (ridx == start.current.x && cidx == start.current.y)
       setChangingEndpoints({ start: true, finish: false });
-    else if (ridx === finish.current.x && cidx === finish.current.y) {
+    else if (ridx == finish.current.x && cidx == finish.current.y) {
       setChangingEndpoints({ start: false, finish: true });
     }
   };

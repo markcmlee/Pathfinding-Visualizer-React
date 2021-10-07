@@ -10,6 +10,8 @@ import {
   ITEM_INITIAL,
   ITEM_FIXED,
   FIXED_COLOR,
+  ITEM_PATH,
+  PATH_COLOR,
 } from "../../actionTypes";
 import "./Node.scss";
 
@@ -29,6 +31,7 @@ const Node = ({ rowIdx, colIdx }) => {
     if (type === ITEM_VISITED) return VISITED_COLOR;
     if (type === ITEM_CLICKED) return CLICKED_COLOR;
     if (type === ITEM_FIXED) return FIXED_COLOR;
+    if (type === ITEM_PATH) return PATH_COLOR;
 
     return INITIAL_COLOR;
   };

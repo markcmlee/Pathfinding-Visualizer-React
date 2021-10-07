@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 
 // Board Size
-export const BOARD_ROW = 16;
-export const BOARD_COL = 32;
+export const BOARD_ROW = 17;
+export const BOARD_COL = 33;
 
 // Colors
 export const INITIAL_COLOR = "white";
@@ -44,4 +44,4 @@ export const ITEM_FIXED = "ITEM_FIXED";
 export const ITEM_INITIAL = "ITEM_INITIAL";
 export const ITEM_VISITED = "ITEM_VISITED";
 export const ITEM_CLICKED = "ITEM_CLICKED";
-export const ITEM_SHORTEST = "ITEM_SHORTEST";
+export const ITEM_PATH = "ITEM_PATH";

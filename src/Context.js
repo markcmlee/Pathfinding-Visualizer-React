@@ -6,6 +6,7 @@ import {
   ITEM_FIXED,
   REACTKEYS,
 } from "./actionTypes";
+import TimeTracker from "./scripts/timer";
 
 export const Context = createContext();
 
@@ -20,11 +21,17 @@ export const Provider = ({ children }) => {
   const board = useRef(JSON.parse(JSON.stringify(BOARD)));
   const setItemCache = useRef({});
 
-  const updateNode = (ridx, cidx, itemType = ITEM_FIXED) => {
+  const updateNode = (ridx, cidx, itemType = ITEM_FIXED, timeFactor = 0) => {
     board.current[ridx][cidx] = itemType;
     const setItem = setItemCache.current[REACTKEYS[ridx][cidx]];
-    // console.log("this is setitem", setItem);
-    setItem(itemType);
+
+    if (timeFactor) {
+      setTimeout(() => {
+        setItem(itemType);
+      }, timeFactor * 50);
+    } else {
+      setItem(itemType);
+    }
   };
 
   return (

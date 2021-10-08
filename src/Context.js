@@ -6,7 +6,6 @@ import {
   ITEM_FIXED,
   REACTKEYS,
 } from "./actionTypes";
-import TimeTracker from "./scripts/timer";
 
 export const Context = createContext();
 

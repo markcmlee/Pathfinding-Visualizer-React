@@ -64,14 +64,14 @@ const Board = () => {
         ? start.current.y
         : finish.current.y;
       updateNode(formerX, formerY, ITEM_INITIAL);
-      const next = { x: ridx, y: cidx };
+      const next = { x: Number(ridx), y: Number(cidx) };
       if (changingEndpoints.start) {
         start.current = next;
       } else {
         finish.current = next;
       }
 
-      updateNode(next.x, next.y);
+      updateNode(Number(next.x), Number(next.y));
     }
   };
 

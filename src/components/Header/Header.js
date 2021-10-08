@@ -3,6 +3,7 @@ import { Context } from "../../Context";
 import "./Header.scss";
 
 import bfs from "../../scripts/bfs";
+import dfs from "../../scripts/dfs";
 
 const Header = () => {
   const context = useContext(Context);
@@ -12,11 +13,17 @@ const Header = () => {
     <div>
       <button
         onClick={() => {
-          console.log("STARAAAARRRTRTRT", start.current);
           bfs(start.current, finish.current, board.current, updateNode);
         }}
       >
-        Hi
+        BREADTH FIRST SEARCH
+      </button>
+      <button
+        onClick={() => {
+          dfs(start.current, finish.current, board.current, updateNode);
+        }}
+      >
+        DEPTH FIRST SEARCH
       </button>
     </div>
   );

@@ -34,7 +34,6 @@ const bfs = (start, finish, board, updateNode) => {
     queue.push({ x: start.x, y: start.y });
     visited[start.x][start.y] = true;
     let find = false;
-
     while (queue.length > 0) {
       const current = queue.shift();
       // base case: found finish node
@@ -61,10 +60,10 @@ const bfs = (start, finish, board, updateNode) => {
         }
       }
     }
-
     return find;
   };
   const result = execute();
+
   if (!result) return false;
 
   const drawShortestPath = () => {

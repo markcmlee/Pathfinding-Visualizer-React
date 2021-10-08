@@ -6,10 +6,10 @@ export const BOARD_COL = 33;
 
 // Colors
 export const INITIAL_COLOR = "white";
-export const VISITED_COLOR = "blue";
+export const VISITED_COLOR = "#8499f8";
 export const CLICKED_COLOR = "gray";
 export const FIXED_COLOR = "orange";
-export const PATH_COLOR = "red";
+export const PATH_COLOR = "#f5676d";
 
 // Board
 export const BOARD = [];

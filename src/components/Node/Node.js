@@ -73,6 +73,7 @@ const Node = ({ rowIdx, colIdx }) => {
       className="boardNode"
       style={{
         backgroundColor: setColor(),
+        // transition: "all 2s ease",
       }}
     />
   );

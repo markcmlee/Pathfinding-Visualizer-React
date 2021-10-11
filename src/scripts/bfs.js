@@ -4,12 +4,11 @@ import {
   ITEM_CLICKED,
   ITEM_VISITED,
   ITEM_PATH,
+  dx,
+  dy,
 } from "../actionTypes";
 
 const bfs = (start, finish, board, updateNode) => {
-  const dx = [-1, 1, 0, 0];
-  const dy = [0, 0, -1, 1];
-
   const dist = new Array(BOARD_ROW);
   const prev = new Array(BOARD_ROW);
   for (let i = 0; i < BOARD_ROW; i++) {

@@ -4,6 +4,7 @@ import "./Header.scss";
 
 import bfs from "../../scripts/bfs";
 import dfs from "../../scripts/dfs";
+import aStar from "../../scripts/aStar";
 
 const Header = () => {
   const context = useContext(Context);
@@ -24,6 +25,13 @@ const Header = () => {
         }}
       >
         DEPTH FIRST SEARCH
+      </button>
+      <button
+        onClick={() => {
+          aStar(start.current, finish.current, board.current, updateNode);
+        }}
+      >
+        A STAR
       </button>
     </div>
   );

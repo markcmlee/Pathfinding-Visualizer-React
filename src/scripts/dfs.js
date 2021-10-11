@@ -4,11 +4,11 @@ import {
   ITEM_CLICKED,
   ITEM_VISITED,
   ITEM_PATH,
+  dx,
+  dy,
 } from "../actionTypes";
 
 const dfs = (start, finish, board, updateNode) => {
-  const dx = [-1, 1, 0, 0];
-  const dy = [0, 0, -1, 1];
   const visited = [];
   const prev = new Array(BOARD_ROW);
   for (let i = 0; i < BOARD_ROW; i++) {
@@ -20,6 +20,7 @@ const dfs = (start, finish, board, updateNode) => {
   }
   let find = false;
   let time = -Infinity;
+
   const execute = (x, y, timeFactor) => {
     visited[x][y] = true;
 
@@ -46,8 +47,6 @@ const dfs = (start, finish, board, updateNode) => {
 
   const result = execute(start.x, start.y, 1);
 
-  console.log("TIME", time);
-
   const drawShortestPath = () => {
     const path = [];
     let { x, y } = finish;
@@ -70,7 +69,7 @@ const dfs = (start, finish, board, updateNode) => {
     }
   };
 
-  drawShortestPath();
+  if (result) drawShortestPath();
 };
 
 export default dfs;

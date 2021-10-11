@@ -30,6 +30,10 @@ export const A_STAR = "A_STAR";
 export const DFS = "DFS";
 export const BFS = "BFS";
 
+// Directionals
+export const dx = [-1, 1, 0, 0];
+export const dy = [0, 0, -1, 1];
+
 // UUID
 export const REACTKEYS = [];
 for (let i = 0; i < BOARD_ROW; i++) {

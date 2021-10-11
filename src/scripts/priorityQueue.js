@@ -17,8 +17,8 @@ export default class PriorityQueue {
     if (!this.length || this.length === 0) return null;
     this.swap(index, this.length - 1);
     const value = this.items.pop();
-    this.bubbleDown(index);
     this.length -= 1;
+    this.bubbleDown(index);
     return value;
   }
 
@@ -60,28 +60,8 @@ export default class PriorityQueue {
   }
 
   swap(a, b) {
-    const temp = a;
-    a = b;
-    b = temp;
+    const temp = this.items[a];
+    this.items[a] = this.items[b];
+    this.items[b] = temp;
   }
 }
-
-const test = new PriorityQueue();
-console.log(test.length);
-test.enqueue({ x: 1, y: 1, prio: 1 });
-console.log(test.length);
-test.enqueue({ x: 2, y: 2, prio: 2 });
-console.log(test.length);
-test.enqueue({ x: 3, y: 3, prio: 3 });
-console.log(test.length);
-
-console.log(test.peek());
-// test.clear()
-// console.log(test.length);
-
-console.log(test.dequeue());
-console.log(test.length);
-console.log(test.dequeue());
-console.log(test.length);
-console.log(test.dequeue());
-console.log(test.length);

@@ -22,6 +22,7 @@
   "dependencies": {
     "cross-env": "^7.0.2",
     "express": "^4.17.1",
+    "js-priority-queue": "^0.1.5",
     "node-sass": "^6.0.1",
     "path": "^0.12.7",
     "pg": "^8.3.0",

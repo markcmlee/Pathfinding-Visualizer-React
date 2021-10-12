@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 
 // Board Size
-export const BOARD_ROW = 17;
+export const BOARD_ROW = 15;
 export const BOARD_COL = 33;
 
 // Colors

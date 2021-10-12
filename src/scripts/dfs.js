@@ -58,8 +58,6 @@ const dfs = (start, finish, board, updateNode) => {
       y = prev[tempX][tempY].y;
     }
     path.push({ x: start.x, y: start.y });
-    console.log("path", path);
-    console.log("LENGTH", path.length);
     for (let i = path.length - 1; i >= 0; i--) {
       x = path[i].x;
       y = path[i].y;

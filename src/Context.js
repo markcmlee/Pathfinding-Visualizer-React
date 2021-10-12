@@ -27,7 +27,7 @@ export const Provider = ({ children }) => {
     if (timeFactor) {
       setTimeout(() => {
         setItem(itemType);
-      }, timeFactor * 50);
+      }, timeFactor);
     } else {
       setItem(itemType);
     }

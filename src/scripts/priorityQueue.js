@@ -1,5 +1,3 @@
-import { text } from "body-parser";
-
 export default class PriorityQueue {
   constructor(comparator = (a, b) => a.prio - b.prio) {
     this.items = [];
@@ -12,6 +10,18 @@ export default class PriorityQueue {
     this.items.push(value);
     this.bubbleUp();
   }
+
+  // dequeue() {
+  //   const poppedVal = this.peek();
+  //   const bottom = this.length - 1;
+  //   if (bottom > 0) {
+  //     this.swap(0, bottom);
+  //   }
+  //   this.items.pop();
+  //   this.length -= 1;
+  //   this.bubbleDown();
+  //   return poppedVal;
+  // }
 
   dequeue(index = 0) {
     if (!this.length || this.length === 0) return null;
@@ -35,6 +45,7 @@ export default class PriorityQueue {
     let index = this.length - 1;
     const parent = (i) => Math.ceil(i / 2 - 1);
     while (parent(index) >= 0 && this.comparator(parent(index), index) > 0) {
+      // while (index > 0 && this.comparator(parent(index), index) > 0) {
       this.swap(parent(index), index);
       index = parent(index);
     }
@@ -65,3 +76,22 @@ export default class PriorityQueue {
     this.items[b] = temp;
   }
 }
+
+// const test = new PriorityQueue();
+
+// test.enqueue({ x: 4, y: 4, prio: 4 });
+// test.enqueue({ x: 1, y: 1, prio: 1 });
+// test.enqueue({ x: 3, y: 3, prio: 3 });
+// test.enqueue({ x: 2, y: 2, prio: 2 });
+// test.enqueue({ x: 5, y: 5, prio: 5 });
+
+// console.log(test.peek());
+// console.log(test.dequeue());
+// console.log(test.peek());
+// console.log(test.dequeue());
+// console.log(test.peek());
+// console.log(test.dequeue());
+// console.log(test.peek());
+// console.log(test.dequeue());
+// console.log(test.peek());
+// console.log(test.dequeue());

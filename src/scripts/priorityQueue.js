@@ -17,8 +17,8 @@ export default class PriorityQueue {
     if (!this.length || this.length === 0) return null;
     this.swap(index, this.length - 1);
     const value = this.items.pop();
-    this.length -= 1;
     this.bubbleDown(index);
+    this.length -= 1;
     return value;
   }
 

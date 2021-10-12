@@ -31,7 +31,7 @@ const Header = () => {
           aStar(start.current, finish.current, board.current, updateNode);
         }}
       >
-        A STAR
+        ASTAR
       </button>
     </div>
   );

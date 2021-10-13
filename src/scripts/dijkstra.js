@@ -22,7 +22,7 @@ const dijkstra = (start, finish, board, updateNode) => {
     }
   }
   dist[start.x][start.y] = 0;
-  const pq = new PriorityQueue((a, b) => a.d - b.d);
+  const pq = new PriorityQueue({ comparator: (a, b) => a.d - b.d });
   let timeFactor;
 
   const execute = () => {
@@ -71,7 +71,6 @@ const dijkstra = (start, finish, board, updateNode) => {
     return false;
   };
   const result = execute();
-  console.log(result);
 
   const drawShortestPath = () => {
     const path = [];

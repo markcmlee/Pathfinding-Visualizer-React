@@ -63,21 +63,21 @@ export default class PriorityQueue {
   }
 }
 
-const test = new PriorityQueue();
+// const test = new PriorityQueue();
 
-test.queue({ x: 4, y: 4, prio: 4 });
-test.queue({ x: 1, y: 1, prio: 1 });
-test.queue({ x: 3, y: 3, prio: 3 });
-test.queue({ x: 2, y: 2, prio: 2 });
-test.queue({ x: 5, y: 5, prio: 5 });
+// test.queue({ x: 4, y: 4, prio: 4 });
+// test.queue({ x: 1, y: 1, prio: 1 });
+// test.queue({ x: 3, y: 3, prio: 3 });
+// test.queue({ x: 2, y: 2, prio: 2 });
+// test.queue({ x: 5, y: 5, prio: 5 });
 
-console.log(test.peek());
-console.log(test.dequeue());
-console.log(test.peek());
-console.log(test.dequeue());
-console.log(test.peek());
-console.log(test.dequeue());
-console.log(test.peek());
-console.log(test.dequeue());
-console.log(test.peek());
-console.log(test.dequeue());
+// console.log(test.peek());
+// console.log(test.dequeue());
+// console.log(test.peek());
+// console.log(test.dequeue());
+// console.log(test.peek());
+// console.log(test.dequeue());
+// console.log(test.peek());
+// console.log(test.dequeue());
+// console.log(test.peek());
+// console.log(test.dequeue());

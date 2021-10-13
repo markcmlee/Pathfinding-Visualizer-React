@@ -1,4 +1,4 @@
-import React, { createContext, useRef, useState } from "react";
+import React, { createContext, useRef, useState, useCallback } from "react";
 import {
   BOARD,
   BOARD_ROW,
@@ -20,18 +20,20 @@ export const Provider = ({ children }) => {
   const board = useRef(JSON.parse(JSON.stringify(BOARD)));
   const setItemCache = useRef({});
 
-  const updateNode = (ridx, cidx, itemType = ITEM_FIXED, timeFactor = 0) => {
-    board.current[ridx][cidx] = itemType;
-    const setItem = setItemCache.current[REACTKEYS[ridx][cidx]];
+  const updateNode = useCallback(
+    (ridx, cidx, itemType = ITEM_FIXED, timeFactor) => {
+      board.current[ridx][cidx] = itemType;
+      const setItem = setItemCache.current[REACTKEYS[ridx][cidx]];
 
-    if (timeFactor) {
-      setTimeout(() => {
+      if (timeFactor) {
+        setTimeout(() => {
+          setItem(itemType);
+        }, timeFactor * 50);
+      } else {
         setItem(itemType);
-      }, timeFactor);
-    } else {
-      setItem(itemType);
+      }
     }
-  };
+  );
 
   return (
     <Context.Provider

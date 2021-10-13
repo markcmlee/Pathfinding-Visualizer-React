@@ -7,16 +7,16 @@ import {
   dx,
   dy,
 } from "../actionTypes";
-import PriorityQueue from "./priorityQueue";
-// import PriorityQueue from "js-priority-queue";
+// import PriorityQueue from "./priorityQueue";
+import PriorityQueue from "js-priority-queue";
 
 const aStar = (start, finish, board, updateNode) => {
   const opened = new Array(BOARD_ROW);
   for (let i = 0; i < BOARD_ROW; i++) {
     opened[i] = new Array(BOARD_COL).fill(false);
   }
-  const pq = new PriorityQueue((a, b) => a.prio - b.prio);
-  // const pq = new PriorityQueue({ comparator: (a, b) => a.prio - b.prio });
+  // const pq = new PriorityQueue((a, b) => a.prio - b.prio);
+  const pq = new PriorityQueue({ comparator: (a, b) => a.prio - b.prio });
 
   const heuristic = (startNode) =>
     Math.abs(startNode.x - finish.x) + Math.abs(startNode.y - finish.y);
@@ -41,9 +41,9 @@ const aStar = (start, finish, board, updateNode) => {
     opened[start.x][start.y] = true;
 
     let find = false;
-    console.log(pq);
+    // console.log(pq);
 
-    while (pq.items.length) {
+    while (pq.length) {
       const current = pq.peek();
       const currX = current.x;
       const currY = current.y;
@@ -55,7 +55,7 @@ const aStar = (start, finish, board, updateNode) => {
       }
 
       opened[currX][currY] = false;
-      console.log(pq.dequeue());
+      pq.dequeue();
 
       for (let i = 0; i < dx.length; i++) {
         const nextX = currX + dx[i];

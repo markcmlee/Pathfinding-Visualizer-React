@@ -15,7 +15,7 @@ import {
 } from "../../actionTypes";
 import "./Node.scss";
 
-const Node = ({ rowIdx, colIdx }) => {
+const Node = React.memo(({ rowIdx, colIdx }) => {
   const { start, finish, setItemCache } = useContext(Context);
   const [type, setType] = useState(ITEM_INITIAL);
 
@@ -77,6 +77,6 @@ const Node = ({ rowIdx, colIdx }) => {
       }}
     />
   );
-};
+});
 
 export default Node;

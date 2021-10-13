@@ -1,4 +1,3 @@
-import { EndOfLineState, updatePartiallyEmittedExpression } from "typescript";
 import {
   BOARD_COL,
   BOARD_ROW,
@@ -8,7 +7,8 @@ import {
   dx,
   dy,
 } from "../actionTypes";
-import PriorityQueue from "./priorityQueue";
+// import PriorityQueue from "./priorityQueue";
+import PriorityQueue from "js-priority-queue";
 
 const dijkstra = (start, finish, board, updateNode) => {
   const dist = new Array(BOARD_ROW);
@@ -26,7 +26,7 @@ const dijkstra = (start, finish, board, updateNode) => {
   let timeFactor;
 
   const execute = () => {
-    pq.enqueue({ x: start.x, y: start.y, d: 0 });
+    pq.queue({ x: start.x, y: start.y, d: 0 });
     let find = false;
 
     while (pq.length > 0) {
@@ -60,7 +60,7 @@ const dijkstra = (start, finish, board, updateNode) => {
         }
 
         dist[nextX][nextY] = dist[currX][currY] + 1;
-        pq.enqueue({ x: nextX, y: nextY, d: dist[nextX][nextY] });
+        pq.queue({ x: nextX, y: nextY, d: dist[nextX][nextY] });
       }
 
       if (find) {

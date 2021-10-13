@@ -1,0 +1,21 @@
+!!! FIX PRIORITY QUEUE
+
+ALGOS:
+  - Greedy Best First Search
+  - Bi-Directional Search Shortest Path
+
+MAZE GENERATION:
+  - Random Maze
+  - Recursive Division
+    - Regular
+    - Vertical and Horizontal Skew
+
+UI:
+  - Add sliders to determine animation rate
+  - Clear buttons:
+    - Path
+    - Walls
+  - Fix dragging start point over walls erases them
+
+CSS:
+  - Make buttons look nicer OR make a dropdown list

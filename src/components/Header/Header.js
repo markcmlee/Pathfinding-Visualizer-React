@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Context } from "../../Context";
 import "./Header.scss";
 
+import Speed from "../Speed/Speed";
 import bfs from "../../scripts/bfs";
 import dfs from "../../scripts/dfs";
 import aStar from "../../scripts/aStar";
@@ -13,6 +14,7 @@ const Header = () => {
 
   return (
     <div>
+      <Speed />
       <button
         onClick={() => {
           bfs(start.current, finish.current, board.current, updateNode);

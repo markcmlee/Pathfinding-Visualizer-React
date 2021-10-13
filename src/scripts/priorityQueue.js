@@ -5,23 +5,11 @@ export default class PriorityQueue {
     this.length = 0;
   }
 
-  enqueue(value) {
+  queue(value) {
     this.length += 1;
     this.items.push(value);
     this.bubbleUp();
   }
-
-  // dequeue() {
-  //   const poppedVal = this.peek();
-  //   const bottom = this.length - 1;
-  //   if (bottom > 0) {
-  //     this.swap(0, bottom);
-  //   }
-  //   this.items.pop();
-  //   this.length -= 1;
-  //   this.bubbleDown();
-  //   return poppedVal;
-  // }
 
   dequeue(index = 0) {
     if (!this.length || this.length === 0) return null;

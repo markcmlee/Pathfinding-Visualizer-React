@@ -53,7 +53,7 @@ const Board = () => {
 
   const onMouseMove = (e) => {
     if (e.target.className !== "boardNode") return;
-    const { ridx, cidx } = e.target.dataset;
+    const { ridx, cidx, type } = e.target.dataset;
     if (isClicking) {
       createWall(e, true);
     } else if (changingEndpoints.start || changingEndpoints.finish) {
@@ -63,6 +63,7 @@ const Board = () => {
       const formerY = changingEndpoints.start
         ? start.current.y
         : finish.current.y;
+      if (type === ITEM_CLICKED) return;
       updateNode(formerX, formerY, ITEM_INITIAL);
       const next = { x: Number(ridx), y: Number(cidx) };
       if (changingEndpoints.start) {

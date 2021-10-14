@@ -29,7 +29,10 @@ export const Provider = ({ children }) => {
       if (timeFactor) {
         setTimeout(() => {
           setItem(itemType);
-        }, timeFactor * animationSpeed);
+        }, timeFactor);
+        // setTimeout(() => {
+        //   setItem(itemType);
+        // }, timeFactor * animationSpeed);
       } else {
         setItem(itemType);
       }

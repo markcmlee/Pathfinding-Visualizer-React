@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Context } from "../../Context";
-import Slider from "@mui/material/Slider";
 import "./Header.scss";
 
 import bfs from "../../scripts/bfs";
@@ -11,21 +10,21 @@ import greedyBFS from "../../scripts/greedyBestFirstSearch";
 
 const Header = () => {
   const context = useContext(Context);
-  const { start, finish, board, updateNode, setAnimationSpeed } = context;
+  const {
+    start,
+    finish,
+    board,
+    updateNode,
+    clear,
+    clearPath,
+    hasPath,
+    isVisualized,
+    setIsVisualized,
+    setHasPath,
+  } = context;
 
   return (
     <div>
-      <div>
-        <Slider
-          id="animationSlider"
-          defaultValue={50}
-          valueLabelDisplay="on"
-          step={10}
-          min={10}
-          max={100}
-          onChange={(e) => setAnimationSpeed(e.target.value)}
-        />
-      </div>
       <button
         type="submit"
         onClick={() => {
@@ -38,6 +37,7 @@ const Header = () => {
         type="submit"
         onClick={() => {
           dfs(start.current, finish.current, board.current, updateNode);
+          setIsVisualized(true);
         }}
       >
         DEPTH FIRST SEARCH
@@ -66,6 +66,15 @@ const Header = () => {
       >
         GREEDY BEST FIRST SEARCH
       </button>
+
+      <div id="controlButtons">
+        <button type="submit" onClick={clearPath}>
+          CLEAR PATH
+        </button>
+        <button type="submit" onClick={clear}>
+          CLEAR ALL
+        </button>
+      </div>
     </div>
   );
 };

@@ -4,6 +4,8 @@ import {
   BOARD_ROW,
   BOARD_COL,
   ITEM_FIXED,
+  ITEM_INITIAL,
+  ITEM_CLICKED,
   REACTKEYS,
 } from "./actionTypes";
 
@@ -12,7 +14,6 @@ export const Context = createContext();
 export const Provider = ({ children }) => {
   const [hasPath, setHasPath] = useState(true);
   const [isVisualized, setIsVisualized] = useState(false);
-  const [isHelped, setIsHelped] = useState(false);
   const [animationSpeed, setAnimationSpeed] = useState(100);
 
   const start = useRef({ x: Math.floor(BOARD_ROW / 2), y: 2 });
@@ -27,6 +28,7 @@ export const Provider = ({ children }) => {
       const setItem = setItemCache.current[REACTKEYS[ridx][cidx]];
 
       if (timeFactor) {
+        console.log("SPEED", animationSpeed);
         setTimeout(() => {
           setItem(itemType);
         }, timeFactor);
@@ -39,17 +41,42 @@ export const Provider = ({ children }) => {
     }
   );
 
+  const clear = () => {
+    if (!hasPath) setHasPath(true);
+    if (isVisualized) setIsVisualized(false);
+    const currentBoard = board.current;
+    currentBoard.forEach((row, ridx) => {
+      row.forEach((item, cidx) => {
+        updateNode(ridx, cidx, ITEM_INITIAL);
+      });
+    });
+  };
+
+  const clearPath = () => {
+    board.current.forEach((row, ridx) => {
+      row.forEach((item, cidx) => {
+        if (board.current[ridx][cidx] !== ITEM_CLICKED) {
+          updateNode(ridx, cidx, ITEM_INITIAL);
+        }
+      });
+    });
+  };
+
   return (
     <Context.Provider
       value={{
+        // state
         hasPath,
         isVisualized,
-        isHelped,
         start,
         finish,
         board,
+
+        // methods
         updateNode,
         setAnimationSpeed,
+        clear,
+        clearPath,
         setItemCache,
       }}
     >

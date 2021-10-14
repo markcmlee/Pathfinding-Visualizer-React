@@ -11,6 +11,7 @@ MAZE GENERATION:
     [ ] Vertical and Horizontal Skew
 
 UI:
+  [ ] Disable Clear Path & Clear All buttons while animation is running
   [X] Add sliders to determine animation rate
   [X] Clear buttons:
     [X] Path

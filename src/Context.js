@@ -31,12 +31,12 @@ export const Provider = ({ children }) => {
 
       if (timeFactor) {
         // console.log("SPEED", animationSpeed);
-        setTimeout(() => {
-          setItem(itemType);
-        }, timeFactor);
         // setTimeout(() => {
         //   setItem(itemType);
-        // }, timeFactor * animationSpeed);
+        // }, timeFactor);
+        setTimeout(() => {
+          setItem(itemType);
+        }, timeFactor * animationSpeed);
       } else {
         setItem(itemType);
       }
@@ -46,15 +46,16 @@ export const Provider = ({ children }) => {
   const clearAll = () => {
     // if (!hasPath) setHasPath(true);
     // if (isVisualized) setIsVisualized(false);
-    const currentBoard = board.current;
-    currentBoard.forEach((row, ridx) => {
+    board.current.forEach((row, ridx) => {
       row.forEach((item, cidx) => {
         updateNode(ridx, cidx, ITEM_INITIAL);
       });
     });
+    // console.log("start", start);
   };
 
   const clearPath = () => {
+    if (!isVisualized || !hasPath) return;
     board.current.forEach((row, ridx) => {
       row.forEach((item, cidx) => {
         if (
@@ -76,6 +77,7 @@ export const Provider = ({ children }) => {
         start,
         finish,
         board,
+        animationSpeed,
 
         // methods
         updateNode,

@@ -9,12 +9,13 @@ import "./App.scss";
 
 const App = () => {
   const context = useContext(Context);
-  const { setAnimationSpeed } = context;
+  const { setAnimationSpeed, isVisualized } = context;
   return (
     <div id="container">
       <h1 id="title">PATHFINDING VISUALIZER</h1>
       <Slider
         id="animationSlider"
+        disabled={isVisualized}
         defaultValue={50}
         valueLabelDisplay="on"
         step={10}

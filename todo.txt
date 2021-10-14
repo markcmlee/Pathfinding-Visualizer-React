@@ -19,3 +19,4 @@ UI:
 
 CSS:
   - Make buttons look nicer OR make a dropdown list
+  - Fix Slider component

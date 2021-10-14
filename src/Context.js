@@ -13,6 +13,7 @@ export const Provider = ({ children }) => {
   const [hasPath, setHasPath] = useState(true);
   const [isVisualized, setIsVisualized] = useState(false);
   const [isHelped, setIsHelped] = useState(false);
+  const [animationSpeed, setAnimationSpeed] = useState(100);
 
   const start = useRef({ x: Math.floor(BOARD_ROW / 2), y: 2 });
   const finish = useRef({ x: Math.floor(BOARD_ROW / 2), y: BOARD_COL - 3 });
@@ -26,9 +27,10 @@ export const Provider = ({ children }) => {
       const setItem = setItemCache.current[REACTKEYS[ridx][cidx]];
 
       if (timeFactor) {
+        console.log("SPEEEEED", animationSpeed);
         setTimeout(() => {
           setItem(itemType);
-        }, timeFactor * 50);
+        }, timeFactor * animationSpeed);
       } else {
         setItem(itemType);
       }
@@ -45,6 +47,7 @@ export const Provider = ({ children }) => {
         finish,
         board,
         updateNode,
+        setAnimationSpeed,
         setItemCache,
       }}
     >

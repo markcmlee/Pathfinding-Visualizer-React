@@ -20,6 +20,9 @@
   },
   "homepage": "https://github.com/markcmlee/Pathfinding-Visualizer-React#readme",
   "dependencies": {
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
+    "@mui/material": "^5.0.3",
     "cross-env": "^7.0.2",
     "express": "^4.17.1",
     "js-priority-queue": "^0.1.5",

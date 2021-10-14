@@ -1,3 +1,4 @@
+import PriorityQueue from "js-priority-queue";
 import {
   BOARD_COL,
   BOARD_ROW,
@@ -9,16 +10,25 @@ import {
 } from "../actionTypes";
 import { heuristic } from "./utils";
 // import PriorityQueue from "./priorityQueue";
-import PriorityQueue from "js-priority-queue";
 
-const aStar = (start, finish, board, updateNode) => {
+// const getNeighbors = (node, grid) => {
+//   const neighbors = [];
+//   const { x, y } = node;
+
+//   if (x !== 0) neighbors.push(grid[x - 1][y]);
+//   if (y !== grid[0].length - 1) neighbors.push(grid[x][y + 1]);
+//   if (x !== grid.length - 1) neighbors.push(grid[x + 1][y]);
+//   if (y !== 0) neighbors.push(grid[x][y - 1]);
+
+//   return neighbors.filter((neighbor) => !neighbor)
+// }
+
+const greedyBFS = (start, finish, board, updateNode) => {
   const opened = new Array(BOARD_ROW);
   for (let i = 0; i < BOARD_ROW; i++) {
     opened[i] = new Array(BOARD_COL).fill(false);
   }
-  // const pq = new PriorityQueue((a, b) => a.prio - b.prio);
-  const pq = new PriorityQueue({ comparator: (a, b) => a.prio - b.prio });
-
+  const pq = new PriorityQueue({ comparator: (a, b) => a.f - b.f });
   const dist = new Array(BOARD_ROW);
   const prev = new Array(BOARD_ROW);
   for (let i = 0; i < BOARD_ROW; i++) {
@@ -33,14 +43,12 @@ const aStar = (start, finish, board, updateNode) => {
   let timeFactor = 1;
 
   const execute = () => {
-    const startPrio = heuristic(start, finish);
-    pq.queue({ x: start.x, y: start.y, prio: startPrio });
+    const startingF = heuristic(start, finish);
+    pq.queue({ x: start.x, y: start.y, f: startingF });
     dist[start.x][start.y] = 0;
     opened[start.x][start.y] = true;
 
     let find = false;
-    // console.log(pq);
-
     while (pq.length) {
       const current = pq.peek();
       const currX = current.x;
@@ -52,9 +60,6 @@ const aStar = (start, finish, board, updateNode) => {
         break;
       }
 
-      opened[currX][currY] = false;
-      pq.dequeue();
-
       for (let i = 0; i < dx.length; i++) {
         const nextX = currX + dx[i];
         const nextY = currY + dy[i];
@@ -63,19 +68,17 @@ const aStar = (start, finish, board, updateNode) => {
           continue;
         if (board[nextX][nextY] === ITEM_CLICKED) continue;
 
-        const g = dist[currX][currY] + 1;
-        const nextPrio = g + heuristic({ x: nextX, y: nextY }, finish);
+        const nextF = heuristic({ x: nextX, y: nextY }, finish);
+        console.log(dist);
 
-        if (g < dist[nextX][nextY]) {
-          // console.log(currX, currY);
+        if (nextF < dist[nextX][nextY]) {
           prev[nextX][nextY] = { x: currX, y: currY };
-          dist[nextX][nextY] = g;
-
+          dist[nextX][nextY] = nextF;
           updateNode(nextX, nextY, ITEM_VISITED, timeFactor);
           timeFactor++;
 
           if (opened[nextX][nextY] === false) {
-            pq.queue({ x: nextX, y: nextY, prio: nextPrio });
+            pq.queue({ x: nextX, y: nextY, prio: nextF });
             opened[nextX][nextY] = true;
           }
         }
@@ -112,4 +115,4 @@ const aStar = (start, finish, board, updateNode) => {
   if (result) drawShortestPath();
 };
 
-export default aStar;
+export default greedyBFS;

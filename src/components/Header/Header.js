@@ -1,21 +1,33 @@
 import React, { useContext } from "react";
 import { Context } from "../../Context";
+import Slider from "@mui/material/Slider";
 import "./Header.scss";
 
-import Speed from "../Speed/Speed";
 import bfs from "../../scripts/bfs";
 import dfs from "../../scripts/dfs";
 import aStar from "../../scripts/aStar";
 import dijkstra from "../../scripts/dijkstra";
+import greedyBFS from "../../scripts/greedyBestFirstSearch";
 
 const Header = () => {
   const context = useContext(Context);
-  const { start, finish, board, updateNode } = context;
+  const { start, finish, board, updateNode, setAnimationSpeed } = context;
 
   return (
     <div>
-      <Speed />
+      <div>
+        <Slider
+          id="animationSlider"
+          defaultValue={50}
+          valueLabelDisplay="on"
+          step={10}
+          min={10}
+          max={100}
+          onChange={(e) => setAnimationSpeed(e.target.value)}
+        />
+      </div>
       <button
+        type="submit"
         onClick={() => {
           bfs(start.current, finish.current, board.current, updateNode);
         }}
@@ -23,6 +35,7 @@ const Header = () => {
         BREADTH FIRST SEARCH
       </button>
       <button
+        type="submit"
         onClick={() => {
           dfs(start.current, finish.current, board.current, updateNode);
         }}
@@ -30,6 +43,7 @@ const Header = () => {
         DEPTH FIRST SEARCH
       </button>
       <button
+        type="submit"
         onClick={() => {
           dijkstra(start.current, finish.current, board.current, updateNode);
         }}
@@ -37,11 +51,20 @@ const Header = () => {
         DIJKSTRA
       </button>
       <button
+        type="submit"
         onClick={() => {
           aStar(start.current, finish.current, board.current, updateNode);
         }}
       >
         ASTAR
+      </button>
+      <button
+        type="submit"
+        onClick={() => {
+          greedyBFS(start.current, finish.current, board.current, updateNode);
+        }}
+      >
+        GREEDY BEST FIRST SEARCH
       </button>
     </div>
   );

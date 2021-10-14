@@ -1,3 +1,4 @@
+import PriorityQueue from "js-priority-queue";
 import {
   BOARD_COL,
   BOARD_ROW,
@@ -7,8 +8,8 @@ import {
   dx,
   dy,
 } from "../actionTypes";
+import { drawShortestPath } from "./utils";
 // import PriorityQueue from "./priorityQueue";
-import PriorityQueue from "js-priority-queue";
 
 const dijkstra = (start, finish, board, updateNode) => {
   const dist = new Array(BOARD_ROW);
@@ -73,27 +74,8 @@ const dijkstra = (start, finish, board, updateNode) => {
   };
   const result = execute();
 
-  const drawShortestPath = () => {
-    const path = [];
-    let { x, y } = finish;
-
-    while (prev[x][y].x !== -1 && prev[x][y].y !== -1) {
-      path.push({ x, y });
-      const tempX = x;
-      const tempY = y;
-      x = prev[tempX][tempY].x;
-      y = prev[tempX][tempY].y;
-    }
-    path.push({ x: start.x, y: start.y });
-    for (let i = path.length - 1; i >= 0; i--) {
-      x = path[i].x;
-      y = path[i].y;
-      updateNode(x, y, ITEM_PATH, timeFactor);
-      timeFactor++;
-    }
-  };
-
-  if (result) drawShortestPath();
+  if (result) drawShortestPath(start, finish, prev, updateNode, timeFactor);
+  else return false;
 };
 
 export default dijkstra;

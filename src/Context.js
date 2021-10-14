@@ -27,7 +27,6 @@ export const Provider = ({ children }) => {
       const setItem = setItemCache.current[REACTKEYS[ridx][cidx]];
 
       if (timeFactor) {
-        console.log("SPEEEEED", animationSpeed);
         setTimeout(() => {
           setItem(itemType);
         }, timeFactor * animationSpeed);

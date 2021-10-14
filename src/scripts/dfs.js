@@ -5,19 +5,14 @@ import {
   ITEM_VISITED,
   ITEM_PATH,
 } from "../actionTypes";
-import { drawShortestPath } from "./utils";
+import { drawShortestPath, prev } from "./utils";
 
 const dfs = (start, finish, board, updateNode) => {
   const dy = [0, 1, 0, -1];
   const dx = [-1, 0, 1, 0];
   const visited = [];
-  const prev = new Array(BOARD_ROW);
   for (let i = 0; i < BOARD_ROW; i++) {
     visited[i] = Array(BOARD_COL).fill(false);
-    prev[i] = [];
-    for (let j = 0; j < BOARD_COL; j++) {
-      prev[i][j] = { x: -1, y: -1 };
-    }
   }
   let find = false;
   let time = -Infinity;

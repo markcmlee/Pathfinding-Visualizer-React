@@ -8,7 +8,7 @@ import {
   dx,
   dy,
 } from "../actionTypes";
-import { heuristic, drawShortestPath } from "./utils";
+import { heuristic, drawShortestPath, dist, prev } from "./utils";
 // import PriorityQueue from "./priorityQueue";
 
 const aStar = (start, finish, board, updateNode) => {
@@ -19,16 +19,6 @@ const aStar = (start, finish, board, updateNode) => {
   // const pq = new PriorityQueue((a, b) => a.prio - b.prio);
   const pq = new PriorityQueue({ comparator: (a, b) => a.prio - b.prio });
 
-  const dist = new Array(BOARD_ROW);
-  const prev = new Array(BOARD_ROW);
-  for (let i = 0; i < BOARD_ROW; i++) {
-    dist[i] = [];
-    prev[i] = [];
-    for (let j = 0; j < BOARD_COL; j++) {
-      dist[i][j] = Infinity;
-      prev[i][j] = { x: -1, y: -1 };
-    }
-  }
   dist[start.x][start.y] = 0;
   let timeFactor = 1;
 

@@ -7,20 +7,9 @@ import {
   dx,
   dy,
 } from "../actionTypes";
-import { drawShortestPath } from "./utils";
+import { drawShortestPath, dist, prev } from "./utils";
 
 const bfs = (start, finish, board, updateNode) => {
-  const dist = new Array(BOARD_ROW);
-  const prev = new Array(BOARD_ROW);
-  for (let i = 0; i < BOARD_ROW; i++) {
-    dist[i] = [];
-    prev[i] = [];
-    for (let j = 0; j < BOARD_COL; j++) {
-      dist[i][j] = Infinity;
-      prev[i][j] = { x: -1, y: -1 };
-    }
-  }
-
   dist[start.x][start.y] = 0;
 
   const queue = [];

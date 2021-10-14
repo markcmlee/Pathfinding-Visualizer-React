@@ -1,4 +1,4 @@
-import { ITEM_PATH } from "../actionTypes";
+import { ITEM_PATH, BOARD_ROW, BOARD_COL } from "../actionTypes";
 
 export const heuristic = (startNode, finishNode) =>
   Math.abs(startNode.x - finishNode.x) + Math.abs(startNode.y - finishNode.y);
@@ -22,3 +22,14 @@ export const drawShortestPath = (start, finish, prev, updateNode, time) => {
     timeFactor++;
   }
 };
+
+export const dist = new Array(BOARD_ROW);
+export const prev = new Array(BOARD_ROW);
+for (let i = 0; i < BOARD_ROW; i++) {
+  dist[i] = [];
+  prev[i] = [];
+  for (let j = 0; j < BOARD_COL; j++) {
+    dist[i][j] = Infinity;
+    prev[i][j] = { x: -1, y: -1 };
+  }
+}

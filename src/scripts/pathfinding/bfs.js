@@ -3,11 +3,10 @@ import {
   BOARD_COL,
   ITEM_CLICKED,
   ITEM_VISITED,
-  ITEM_PATH,
   dx,
   dy,
-} from "../actionTypes";
-import { drawShortestPath, dist, prev } from "./utils";
+} from "../../actionTypes";
+import { drawShortestPath, dist, prev } from "../utils";
 
 const bfs = (start, finish, board, updateNode) => {
   dist[start.x][start.y] = 0;

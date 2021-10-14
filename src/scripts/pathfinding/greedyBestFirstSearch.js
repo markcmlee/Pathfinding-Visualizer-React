@@ -7,8 +7,8 @@ import {
   ITEM_CLICKED,
   dx,
   dy,
-} from "../actionTypes";
-import { heuristic, drawShortestPath, dist, prev } from "./utils";
+} from "../../actionTypes";
+import { heuristic, drawShortestPath, dist, prev } from "../utils";
 
 const greedyBFS = (start, finish, board, updateNode) => {
   const opened = new Array(BOARD_ROW);
@@ -22,7 +22,6 @@ const greedyBFS = (start, finish, board, updateNode) => {
   const execute = () => {
     const startingF = heuristic(start, finish);
     pq.queue({ x: start.x, y: start.y, f: startingF });
-    dist[start.x][start.y] = 0;
     opened[start.x][start.y] = true;
 
     let find = false;

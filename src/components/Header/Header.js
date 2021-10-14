@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import { Context } from "../../Context";
 import "./Header.scss";
 
-import bfs from "../../scripts/bfs";
-import dfs from "../../scripts/dfs";
-import aStar from "../../scripts/aStar";
-import dijkstra from "../../scripts/dijkstra";
-import greedyBFS from "../../scripts/greedyBestFirstSearch";
+import bfs from "../../scripts/pathfinding/bfs";
+import dfs from "../../scripts/pathfinding/dfs";
+import aStar from "../../scripts/pathfinding/aStar";
+import dijkstra from "../../scripts/pathfinding/dijkstra";
+import greedyBFS from "../../scripts/pathfinding/greedyBestFirstSearch";
 
 const Header = () => {
   const context = useContext(Context);
@@ -15,7 +15,7 @@ const Header = () => {
     finish,
     board,
     updateNode,
-    clear,
+    clearAll,
     clearPath,
     hasPath,
     isVisualized,
@@ -23,11 +23,22 @@ const Header = () => {
     setHasPath,
   } = context;
 
+  const onClearAll = () => {
+    setIsVisualized(false);
+    clearAll();
+  };
+
+  const onClearPath = () => {
+    setIsVisualized(false);
+    clearPath();
+  };
+
   return (
     <div>
       <button
         type="submit"
         onClick={() => {
+          setIsVisualized(true);
           bfs(start.current, finish.current, board.current, updateNode);
         }}
       >
@@ -36,8 +47,8 @@ const Header = () => {
       <button
         type="submit"
         onClick={() => {
-          dfs(start.current, finish.current, board.current, updateNode);
           setIsVisualized(true);
+          dfs(start.current, finish.current, board.current, updateNode);
         }}
       >
         DEPTH FIRST SEARCH
@@ -45,6 +56,7 @@ const Header = () => {
       <button
         type="submit"
         onClick={() => {
+          setIsVisualized(true);
           dijkstra(start.current, finish.current, board.current, updateNode);
         }}
       >
@@ -54,6 +66,7 @@ const Header = () => {
         type="submit"
         onClick={() => {
           aStar(start.current, finish.current, board.current, updateNode);
+          setIsVisualized(true);
         }}
       >
         ASTAR
@@ -62,16 +75,17 @@ const Header = () => {
         type="submit"
         onClick={() => {
           greedyBFS(start.current, finish.current, board.current, updateNode);
+          setIsVisualized(true);
         }}
       >
         GREEDY BEST FIRST SEARCH
       </button>
 
       <div id="controlButtons">
-        <button type="submit" onClick={clearPath}>
+        <button type="submit" onClick={onClearPath} disabled={!isVisualized}>
           CLEAR PATH
         </button>
-        <button type="submit" onClick={clear}>
+        <button type="submit" onClick={onClearAll}>
           CLEAR ALL
         </button>
       </div>

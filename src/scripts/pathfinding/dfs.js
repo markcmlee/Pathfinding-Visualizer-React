@@ -3,9 +3,8 @@ import {
   BOARD_COL,
   ITEM_CLICKED,
   ITEM_VISITED,
-  ITEM_PATH,
-} from "../actionTypes";
-import { drawShortestPath, prev } from "./utils";
+} from "../../actionTypes";
+import { drawShortestPath, prev } from "../utils";
 
 const dfs = (start, finish, board, updateNode) => {
   const dy = [0, 1, 0, -1];

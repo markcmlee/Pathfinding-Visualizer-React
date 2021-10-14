@@ -7,21 +7,11 @@ import {
   ITEM_CLICKED,
   dx,
   dy,
-} from "../actionTypes";
-import { drawShortestPath } from "./utils";
+} from "../../actionTypes";
+import { drawShortestPath, dist, prev } from "../utils";
 // import PriorityQueue from "./priorityQueue";
 
 const dijkstra = (start, finish, board, updateNode) => {
-  const dist = new Array(BOARD_ROW);
-  const prev = new Array(BOARD_ROW);
-  for (let i = 0; i < BOARD_ROW; i++) {
-    dist[i] = [];
-    prev[i] = [];
-    for (let j = 0; j < BOARD_COL; j++) {
-      dist[i][j] = Infinity;
-      prev[i][j] = { x: -1, y: -1 };
-    }
-  }
   dist[start.x][start.y] = 0;
   // const pq = new PriorityQueue((a, b) => a.d - b.d);
   const pq = new PriorityQueue({ comparator: (a, b) => a.d - b.d });
@@ -51,7 +41,7 @@ const dijkstra = (start, finish, board, updateNode) => {
           continue;
         if (board[nextX][nextY] === ITEM_CLICKED) continue;
 
-        board[nextX][nextY] = ITEM_VISITED;
+        // board[nextX][nextY] = ITEM_VISITED;
         updateNode(nextX, nextY, ITEM_VISITED, currD);
         prev[nextX][nextY] = { x: currX, y: currY };
 

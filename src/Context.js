@@ -7,6 +7,8 @@ import {
   ITEM_INITIAL,
   ITEM_CLICKED,
   REACTKEYS,
+  ITEM_PATH,
+  ITEM_VISITED,
 } from "./actionTypes";
 
 export const Context = createContext();
@@ -28,7 +30,7 @@ export const Provider = ({ children }) => {
       const setItem = setItemCache.current[REACTKEYS[ridx][cidx]];
 
       if (timeFactor) {
-        console.log("SPEED", animationSpeed);
+        // console.log("SPEED", animationSpeed);
         setTimeout(() => {
           setItem(itemType);
         }, timeFactor);
@@ -41,9 +43,9 @@ export const Provider = ({ children }) => {
     }
   );
 
-  const clear = () => {
-    if (!hasPath) setHasPath(true);
-    if (isVisualized) setIsVisualized(false);
+  const clearAll = () => {
+    // if (!hasPath) setHasPath(true);
+    // if (isVisualized) setIsVisualized(false);
     const currentBoard = board.current;
     currentBoard.forEach((row, ridx) => {
       row.forEach((item, cidx) => {
@@ -55,7 +57,10 @@ export const Provider = ({ children }) => {
   const clearPath = () => {
     board.current.forEach((row, ridx) => {
       row.forEach((item, cidx) => {
-        if (board.current[ridx][cidx] !== ITEM_CLICKED) {
+        if (
+          board.current[ridx][cidx] === ITEM_PATH ||
+          board.current[ridx][cidx] === ITEM_VISITED
+        ) {
           updateNode(ridx, cidx, ITEM_INITIAL);
         }
       });
@@ -75,8 +80,9 @@ export const Provider = ({ children }) => {
         // methods
         updateNode,
         setAnimationSpeed,
-        clear,
+        clearAll,
         clearPath,
+        setIsVisualized,
         setItemCache,
       }}
     >

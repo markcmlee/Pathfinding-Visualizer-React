@@ -1,7 +1,25 @@
 import { ITEM_PATH, BOARD_ROW, BOARD_COL } from "../actionTypes";
 
+export const dist = new Array(BOARD_ROW)
+  .fill()
+  .map(() => new Array(BOARD_COL).fill(Infinity));
+export const prev = new Array(BOARD_ROW)
+  .fill()
+  .map(() => new Array(BOARD_COL).fill({ x: -1, y: -1 }));
+
 export const heuristic = (startNode, finishNode) =>
   Math.abs(startNode.x - finishNode.x) + Math.abs(startNode.y - finishNode.y);
+
+const reset = () => {
+  for (let i = 0; i < BOARD_ROW; i++) {
+    dist[i] = [];
+    prev[i] = [];
+    for (let j = 0; j < BOARD_COL; j++) {
+      dist[i][j] = Infinity;
+      prev[i][j] = { x: -1, y: -1 };
+    }
+  }
+};
 
 export const drawShortestPath = (start, finish, prev, updateNode, time) => {
   const path = [];
@@ -21,15 +39,5 @@ export const drawShortestPath = (start, finish, prev, updateNode, time) => {
     updateNode(x, y, ITEM_PATH, timeFactor);
     timeFactor++;
   }
+  reset();
 };
-
-export const dist = new Array(BOARD_ROW);
-export const prev = new Array(BOARD_ROW);
-for (let i = 0; i < BOARD_ROW; i++) {
-  dist[i] = [];
-  prev[i] = [];
-  for (let j = 0; j < BOARD_COL; j++) {
-    dist[i][j] = Infinity;
-    prev[i][j] = { x: -1, y: -1 };
-  }
-}

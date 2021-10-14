@@ -2,13 +2,12 @@ import PriorityQueue from "js-priority-queue";
 import {
   BOARD_COL,
   BOARD_ROW,
-  ITEM_PATH,
   ITEM_VISITED,
   ITEM_CLICKED,
   dx,
   dy,
-} from "../actionTypes";
-import { heuristic, drawShortestPath, dist, prev } from "./utils";
+} from "../../actionTypes";
+import { heuristic, drawShortestPath, dist, prev } from "../utils";
 // import PriorityQueue from "./priorityQueue";
 
 const aStar = (start, finish, board, updateNode) => {
@@ -21,7 +20,6 @@ const aStar = (start, finish, board, updateNode) => {
 
   dist[start.x][start.y] = 0;
   let timeFactor = 1;
-
   const execute = () => {
     const startPrio = heuristic(start, finish);
     pq.queue({ x: start.x, y: start.y, prio: startPrio });

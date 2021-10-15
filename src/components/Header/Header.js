@@ -2,12 +2,14 @@ import React, { useContext } from "react";
 import { Context } from "../../Context";
 import "./Header.scss";
 
+import { BOARD_COL, BOARD_ROW, HORIZONTAL, VERTICAL } from "../../actionTypes";
 import bfs from "../../scripts/pathfinding/bfs";
 import dfs from "../../scripts/pathfinding/dfs";
 import aStar from "../../scripts/pathfinding/aStar";
 import dijkstra from "../../scripts/pathfinding/dijkstra";
 import greedyBFS from "../../scripts/pathfinding/greedyBestFirstSearch";
 import randomMaze from "../../scripts/mazeGeneration/randomMaze";
+import recursiveDivision from "../../scripts/mazeGeneration/recursiveDivisionMaze";
 
 const Header = () => {
   const context = useContext(Context);
@@ -98,6 +100,25 @@ const Header = () => {
           }}
         >
           RANDOM MAZE
+        </button>
+        <button
+          type="submit"
+          disabled={isVisualized}
+          onClick={() => {
+            onClearAll();
+            recursiveDivision(
+              board.current,
+              0,
+              0,
+              BOARD_COL,
+              BOARD_ROW,
+              HORIZONTAL,
+              updateNode,
+              1
+            );
+          }}
+        >
+          RECURSIVE DIVISION MAZE
         </button>
       </div>
 

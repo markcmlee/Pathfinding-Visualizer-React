@@ -5,7 +5,7 @@ ALGOS:
   [ ] Bi-Directional Search Shortest Path
 
 MAZE GENERATION:
-  [ ] Random Maze
+  [X] Random Maze
   [ ] Recursive Division
     [ ] Regular
     [ ] Vertical and Horizontal Skew

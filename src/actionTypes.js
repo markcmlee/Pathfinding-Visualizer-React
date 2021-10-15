@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 
 // Board Size
-export const BOARD_ROW = 17;
-export const BOARD_COL = 35;
+export const BOARD_ROW = 9;
+export const BOARD_COL = 9;
 
 // Colors
 export const INITIAL_COLOR = "white";
@@ -49,3 +49,7 @@ export const ITEM_INITIAL = "ITEM_INITIAL";
 export const ITEM_VISITED = "ITEM_VISITED";
 export const ITEM_CLICKED = "ITEM_CLICKED";
 export const ITEM_PATH = "ITEM_PATH";
+
+// Maze
+export const HORIZONTAL = "HORIZONTAL";
+export const VERTICAL = "VERTICAL";

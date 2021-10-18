@@ -4,16 +4,23 @@
   flex-direction: row;
   justify-content: space-between;
   width: 75%;
-  height: 10%;
+  height: 12%;
 }
 
 #controlButtons {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  // max-height: 80px;
+
+  .clearButton {
+    max-height: 50px;
+  }
+  margin-bottom: 2%;
 }
 
 .algoButton {
   max-height: 50px;
   align-self: center;
+  min-width: 139px;
 }

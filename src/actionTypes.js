@@ -1,8 +1,19 @@
 import { v4 as uuidv4 } from "uuid";
 
+let height = document.body.clientHeight;
+let width = document.body.clientWidth;
+
 // Board Size
-export const BOARD_ROW = 17;
-export const BOARD_COL = 37;
+export let BOARD_ROW = 17;
+export let BOARD_COL = 37;
+
+if (width < 950) {
+  BOARD_ROW = 13;
+  BOARD_COL = 27;
+}
+
+// console.log(document.body.clientHeight);
+// console.log(window.screen.width);
 
 // Colors
 export const INITIAL_COLOR = "white";

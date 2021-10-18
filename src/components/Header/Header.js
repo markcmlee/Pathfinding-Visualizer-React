@@ -134,6 +134,7 @@ const Header = () => {
 
       <div id="controlButtons">
         <Button
+          className="clearButton"
           variant="contained"
           onClick={onClearPath}
           disabled={!isVisualized}
@@ -142,6 +143,7 @@ const Header = () => {
         </Button>
 
         <Button
+          className="clearButton"
           variant="contained"
           onClick={onClearAll}
           // disabled={!isVisualized}

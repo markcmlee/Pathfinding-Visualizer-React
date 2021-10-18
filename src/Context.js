@@ -5,7 +5,6 @@ import {
   BOARD_COL,
   ITEM_FIXED,
   ITEM_INITIAL,
-  ITEM_CLICKED,
   REACTKEYS,
   ITEM_PATH,
   ITEM_VISITED,
@@ -30,10 +29,6 @@ export const Provider = ({ children }) => {
       const setItem = setItemCache.current[REACTKEYS[ridx][cidx]];
 
       if (timeFactor) {
-        // console.log("SPEED", animationSpeed);
-        // setTimeout(() => {
-        //   setItem(itemType);
-        // }, timeFactor);
         setTimeout(() => {
           setItem(itemType);
         }, timeFactor * animationSpeed);

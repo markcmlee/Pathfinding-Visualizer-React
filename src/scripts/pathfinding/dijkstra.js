@@ -15,7 +15,7 @@ const dijkstra = (start, finish, board, updateNode) => {
   dist[start.x][start.y] = 0;
   // const pq = new PriorityQueue((a, b) => a.d - b.d);
   const pq = new PriorityQueue({ comparator: (a, b) => a.d - b.d });
-  let timeFactor;
+  let timeFactor = 1;
 
   const execute = () => {
     pq.queue({ x: start.x, y: start.y, d: 0 });
@@ -42,15 +42,14 @@ const dijkstra = (start, finish, board, updateNode) => {
         if (board[nextX][nextY] === ITEM_CLICKED) continue;
 
         // board[nextX][nextY] = ITEM_VISITED;
-        updateNode(nextX, nextY, ITEM_VISITED, currD);
+        updateNode(nextX, nextY, ITEM_VISITED, timeFactor);
+        timeFactor++;
         prev[nextX][nextY] = { x: currX, y: currY };
 
         if (nextX === finish.x && nextY === finish.y) {
-          timeFactor = currD + 1;
           find = true;
           break;
         }
-
         dist[nextX][nextY] = dist[currX][currY] + 1;
         pq.queue({ x: nextX, y: nextY, d: dist[nextX][nextY] });
       }

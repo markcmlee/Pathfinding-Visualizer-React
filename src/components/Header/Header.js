@@ -41,6 +41,7 @@ const Header = () => {
   return (
     <div id="buttonsContainer">
       <Button
+        className="algoButton"
         variant="outlined"
         disabled={isVisualized}
         onClick={() => {
@@ -52,6 +53,7 @@ const Header = () => {
       </Button>
 
       <Button
+        className="algoButton"
         variant="outlined"
         disabled={isVisualized}
         onClick={() => {
@@ -63,6 +65,7 @@ const Header = () => {
       </Button>
 
       <Button
+        className="algoButton"
         variant="outlined"
         disabled={isVisualized}
         onClick={() => {
@@ -74,6 +77,7 @@ const Header = () => {
       </Button>
 
       <Button
+        className="algoButton"
         variant="outlined"
         disabled={isVisualized}
         onClick={() => {
@@ -85,6 +89,7 @@ const Header = () => {
       </Button>
 
       <Button
+        className="algoButton"
         variant="outlined"
         disabled={isVisualized}
         onClick={() => {

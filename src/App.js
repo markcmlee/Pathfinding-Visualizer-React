@@ -15,6 +15,7 @@ const App = () => {
       <h1 id="title">PATHFINDING VISUALIZER</h1>
       <div id="sliderContainer">
         <h3>Set Animation Speed </h3>
+        <p>Faster</p>
         <Slider
           id="animationSlider"
           disabled={isVisualized}
@@ -24,6 +25,7 @@ const App = () => {
           max={100}
           onChange={(e) => setAnimationSpeed(e.target.value)}
         />
+        <p>Slower</p>
       </div>
 
       <Header />

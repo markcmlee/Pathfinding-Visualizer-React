@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import Button from "@mui/material/Button";
 import { Context } from "../../Context";
 import "./Header.scss";
 
@@ -38,59 +39,63 @@ const Header = () => {
   };
 
   return (
-    <div>
-      <button
-        type="submit"
+    <div id="buttonsContainer">
+      <Button
+        variant="outlined"
         disabled={isVisualized}
         onClick={() => {
           setIsVisualized(true);
           bfs(start.current, finish.current, board.current, updateNode);
         }}
       >
-        BREADTH FIRST SEARCH
-      </button>
-      <button
-        type="submit"
+        Breadth First Search
+      </Button>
+
+      <Button
+        variant="outlined"
         disabled={isVisualized}
         onClick={() => {
           setIsVisualized(true);
           dfs(start.current, finish.current, board.current, updateNode);
         }}
       >
-        DEPTH FIRST SEARCH
-      </button>
-      <button
-        type="submit"
+        Depth First Search
+      </Button>
+
+      <Button
+        variant="outlined"
         disabled={isVisualized}
         onClick={() => {
           setIsVisualized(true);
           dijkstra(start.current, finish.current, board.current, updateNode);
         }}
       >
-        DIJKSTRA
-      </button>
-      <button
-        type="submit"
+        Dijkstra
+      </Button>
+
+      <Button
+        variant="outlined"
         disabled={isVisualized}
         onClick={() => {
           aStar(start.current, finish.current, board.current, updateNode);
           setIsVisualized(true);
         }}
       >
-        ASTAR
-      </button>
-      <button
-        type="submit"
+        A Star
+      </Button>
+
+      <Button
+        variant="outlined"
         disabled={isVisualized}
         onClick={() => {
           greedyBFS(start.current, finish.current, board.current, updateNode);
           setIsVisualized(true);
         }}
       >
-        GREEDY BEST FIRST SEARCH
-      </button>
+        Greedy Best First Search
+      </Button>
 
-      <div>
+      {/* <div>
         <button
           type="submit"
           disabled={isVisualized}
@@ -106,7 +111,7 @@ const Header = () => {
           disabled={isVisualized}
           onClick={() => {
             onClearAll();
-            recursiveDivision(
+            recursiveMaze(
               board.current,
               0,
               0,
@@ -120,15 +125,24 @@ const Header = () => {
         >
           RECURSIVE DIVISION MAZE
         </button>
-      </div>
+      </div> */}
 
       <div id="controlButtons">
-        <button type="submit" onClick={onClearPath} disabled={!isVisualized}>
-          CLEAR PATH
-        </button>
-        <button type="submit" onClick={onClearAll}>
-          CLEAR ALL
-        </button>
+        <Button
+          variant="contained"
+          onClick={onClearPath}
+          disabled={!isVisualized}
+        >
+          Clear Path
+        </Button>
+
+        <Button
+          variant="contained"
+          onClick={onClearAll}
+          // disabled={!isVisualized}
+        >
+          Clear All
+        </Button>
       </div>
     </div>
   );

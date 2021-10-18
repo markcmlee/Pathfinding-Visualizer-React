@@ -13,16 +13,19 @@ const App = () => {
   return (
     <div id="container">
       <h1 id="title">PATHFINDING VISUALIZER</h1>
-      <Slider
-        id="animationSlider"
-        disabled={isVisualized}
-        defaultValue={50}
-        valueLabelDisplay="on"
-        step={10}
-        min={10}
-        max={100}
-        onChange={(e) => setAnimationSpeed(e.target.value)}
-      />
+      <div id="sliderContainer">
+        <h3>Set Animation Speed </h3>
+        <Slider
+          id="animationSlider"
+          disabled={isVisualized}
+          defaultValue={50}
+          step={10}
+          min={10}
+          max={100}
+          onChange={(e) => setAnimationSpeed(e.target.value)}
+        />
+      </div>
+
       <Header />
       <Board />
     </div>

@@ -25,7 +25,7 @@ const recursiveDivision = (
   updateNode,
   timeFactor
 ) => {
-  if (width < 2 || height < 2) return;
+  if (width <= 2 || height <= 2) return;
   let time = timeFactor;
 
   const isHorizontal = orientation === HORIZONTAL;
@@ -62,21 +62,21 @@ const recursiveDivision = (
   recursiveDivision(board, nextC, nextR, nextW, nextH, nextD, updateNode, time);
 
   // Bottom or Right side
-  // const nextH2 = isHorizontal ? Math.abs(height - wr) : height;
-  // const nextW2 = isHorizontal ? width : Math.abs(width - wc);
-  // const nextD2 = chooseOrientation(nextW2, nextH2);
-  // const nextR2 = isHorizontal ? wr : r;
-  // const nextC2 = isHorizontal ? c : wc;
-  // recursiveDivision(
-  //   board,
-  //   nextC2,
-  //   nextR2,
-  //   nextW2,
-  //   nextH2,
-  //   nextD2,
-  //   updateNode,
-  //   time
-  // );
+  const nextH2 = isHorizontal ? Math.abs(height - wr) : height;
+  const nextW2 = isHorizontal ? width : Math.abs(width - wc);
+  const nextD2 = chooseOrientation(nextW2, nextH2);
+  const nextR2 = isHorizontal ? wr : r;
+  const nextC2 = isHorizontal ? c : wc;
+  recursiveDivision(
+    board,
+    nextC2,
+    nextR2,
+    nextW2,
+    nextH2,
+    nextD2,
+    updateNode,
+    time
+  );
 };
 
 export default recursiveDivision;

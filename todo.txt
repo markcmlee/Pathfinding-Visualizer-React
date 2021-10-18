@@ -7,8 +7,6 @@ ALGOS:
 MAZE GENERATION:
   [X] Random Maze
   [ ] Recursive Division
-    [ ] Regular
-    [ ] Vertical and Horizontal Skew
 
 UI:
   [ ] Disable Clear Path & Clear All buttons while animation is running
@@ -19,5 +17,5 @@ UI:
   [X] Fix dragging start point over walls erases them
 
 CSS:
-  [ ] Make buttons look nicer OR make a dropdown list
-  [ ] Fix Slider component
+  [X] Make buttons look nicer OR make a dropdown list
+  [X] Fix Slider component
